@@ -7,10 +7,11 @@ STAGE_NAME = "Data Ingestion stage"
 
 try:
     logger.info(f"<<<<<<stage {STAGE_NAME} started >>>>>>>>>")
-    obj = DataIngestionTrainingPipeling()
-    obj.main()
+    data_ingestion = DataIngestionTrainingPipeling()
+    data_ingestion.main()
     logger.info(f">>>>>>>>>>>>>>>{STAGE_NAME} completed<<<<<<<")
 except Exception as e:
+    logger.exception(e)
     raise e
 
 
@@ -19,11 +20,12 @@ STAGE_NAME = "Prepare base Model"
 try:
     logger.info(">>>>>>>>>preparemodeltraining start<<<<<<<")
     logger.info(f">>>>stage {STAGE_NAME} started")
-    obj = PrepareBaseModelTrainingPipeline()
-    obj.main()
+    prepare_base_model = PrepareBaseModelTrainingPipeline()
+    prepare_base_model.main()
     logger.info(f"<<<<<<<<<<stage {STAGE_NAME} completed >>>>>>")
 
 except Exception as e:
+    logger.exception(e)
     raise e
 
         

@@ -1,10 +1,9 @@
 import os 
 import urllib.request as request
 from zipfile import ZipFile
-import tensorflow as tf
 from pathlib import Path
 from Kidney_Disease_Classifier.entity.config_entity import PrepareBaseModelConfig
-
+import tensorflow as tf
 
 
 class PrepareBaseModel:
