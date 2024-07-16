@@ -2,6 +2,7 @@ from Kidney_Disease_Classifier import logger
 from Kidney_Disease_Classifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeling
 from Kidney_Disease_Classifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from Kidney_Disease_Classifier.pipeline.stage_03_model_training_pipeline import ModelTrainingPipeline
+from Kidney_Disease_Classifier.pipeline.stage_04_model_evaluation import EvaluationPipeline
 
 
 
@@ -45,5 +46,16 @@ except Exception as e:
     raise e
 
         
+STAGE_NAME = "Model Evaluation"
+
+try:
+    logger.info("---------------------")
+    logger.info("----stage{STAGE_NAME} started---------")
+    obj = EvaluationPipeline()
+    obj.main()
+    logger.info(f"----stage {STAGE_NAME} completed--------")
+except Exception as e:
+    logger.exception(e)
+    raise e
     
     
