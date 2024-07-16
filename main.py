@@ -51,11 +51,22 @@ STAGE_NAME = "Model Evaluation"
 try:
     logger.info("---------------------")
     logger.info("----stage{STAGE_NAME} started---------")
+    
+    import mlflow
+    import dagshub
+    
+    dagshub.init(repo_owner='shangeethmathan2020', repo_name='Kidney-Disease-Classification-DL-Project-01', mlflow=True)
+
+
+    with mlflow.start_run():
+        mlflow.log_param('parameter name', 'value')
+        mlflow.log_metric('metric name', 1)
+    
+    
     obj = EvaluationPipeline()
     obj.main()
     logger.info(f"----stage {STAGE_NAME} completed--------")
 except Exception as e:
     logger.exception(e)
     raise e
-    
     
