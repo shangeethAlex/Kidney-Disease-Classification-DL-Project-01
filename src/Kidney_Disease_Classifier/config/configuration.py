@@ -1,8 +1,12 @@
 from Kidney_Disease_Classifier.constants import *
-from Kidney_Disease_Classifier.utiles.common import read_yaml,create_directories
+from Kidney_Disease_Classifier.utiles.common import read_yaml,create_directories,save_json
 from Kidney_Disease_Classifier.entity.config_entity import DataIngestionConfig
 from Kidney_Disease_Classifier.entity.config_entity import PrepareBaseModelConfig
 from Kidney_Disease_Classifier.entity.config_entity import TrainingConfig
+from Kidney_Disease_Classifier.entity.config_entity import EvaluationConfig
+import os
+
+
 
 class ConfigurationManager:
     def __init__(
@@ -73,3 +77,17 @@ class ConfigurationManager:
         )
 
         return training_config
+    
+    
+    def get_evaluation_config(self) -> EvaluationConfig:
+        
+        eval_config = EvaluationConfig(
+            path_of_model = "artifacts/training/model.h5",
+            training_data =  "artifacts/data_ingestion/kidney-ct-scan-image",
+            all_params =  self.params,
+            mlflow_uri = "https://dagshub.com/shangeethmathan2020/Kidney-Disease-Classification-DL-Project-01.mlflow",
+            params_image_size =  self.params.IMAGE_SIZE,
+            params_batch_size = self.params.BATCH_SIZE
+        )
+        
+        return eval_config
